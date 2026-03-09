@@ -195,11 +195,11 @@ if st.sidebar.button("Get Recommendations"):
         else:
             st.success(f"Top 10 Recommendations for User {used_id}")
             
-        st.dataframe(reccs, use_container_width=True)
+        st.dataframe(reccs, width='stretch')
 else:
     st.info("👈 Use the sidebar to enter a User ID and choose an algorithm to get started!")
     
     # Sample display
     st.header("Top Rated Anime (Overall)")
     top_rated = anime_df.sort_values(by='rating', ascending=False).head(5)
-    st.dataframe(top_rated[['name', 'genre', 'rating']], use_container_width=True)
+    st.dataframe(top_rated[['name', 'genre', 'rating']], width='stretch')
