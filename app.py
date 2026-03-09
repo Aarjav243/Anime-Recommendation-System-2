@@ -103,7 +103,9 @@ def get_cf_sgd_recommendations(user_id, _ratings_df, _anime_df):
     rated_indices = [anime_id_to_index[aid] for aid in rated_animes if aid in anime_id_to_index]
     
     user_pred = predicted_ratings_cf[u_idx].copy()
-    user_pred[rated_indices] = -np.inf
+    for idx in rated_indices:
+        if idx < len(user_pred):
+            user_pred[idx] = -np.inf
     
     top_indices = np.argsort(user_pred)[-10:][::-1]
     recommended_anime_ids = [unique_animes[idx] for idx in top_indices]
@@ -159,7 +161,7 @@ def get_ncf_recommendations(user_id, _ratings_df, _anime_df):
     
     user_idx = user_id_to_index[user_id]
     user_rated_animes = ratings[ratings['user_id'] == user_id]['anime_id'].tolist()
-    user_rated_indices = {anime_id_to_index[aid] for aid in user_rated_animes if aid in anime_id_to_index}
+    user_rated_indices = [anime_id_to_index[aid] for aid in user_rated_animes if aid in anime_id_to_index]
     
     unrated_indices = [idx for idx in range(num_animes) if idx not in user_rated_indices]
     user_array = np.array([user_idx] * len(unrated_indices))
