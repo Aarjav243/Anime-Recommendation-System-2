@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #Matrix factorization
@@ -80,7 +80,7 @@ print(f"\nTop 10 recommendations for user {user_id}:")
 print(recommendations)
 
 
-# In[5]:
+# In[ ]:
 
 
 #Collaborative filtering
@@ -183,7 +183,7 @@ print(f"Top 10 recommendations for user {user_id}:")
 print(recommendations)
 
 
-# In[3]:
+# In[ ]:
 
 
 #neural collaborative filtering 
@@ -303,7 +303,7 @@ print(f"\nTop 10 recommendations for user {user_id}:")
 print(recommendations)
 
 
-# In[4]:
+# In[ ]:
 
 
 #computing metrics like rmse and mae to compare the 4 methods 
@@ -327,7 +327,7 @@ ratings = ratings[ratings['rating'] != -1]  # Filter unrated entries
 train_df, test_df = train_test_split(ratings, test_size=0.2, random_state=42)
 
 
-# In[5]:
+# In[ ]:
 
 
 # --- Matrix Factorization using SVD ---
@@ -358,7 +358,7 @@ def predict_svd(user_id, anime_id):
     return 0 
 
 
-# In[6]:
+# In[ ]:
 
 
 # --- Collaborative Filtering with SGD ---
@@ -403,7 +403,7 @@ def get_recommendations_sgd(user_id, train_df, top_n=10):
     return [unique_animes[idx] for idx in top_indices]
 
 
-# In[16]:
+# In[ ]:
 
 
 # --- Neural Collaborative Filtering (NCF) ---
@@ -454,7 +454,7 @@ def get_recommendations_ncf(user_id, train_df, top_n=10):
     return [unique_animes[idx] for idx in recommended_indices]
 
 
-# In[7]:
+# In[ ]:
 
 
 import numpy as np
@@ -466,7 +466,7 @@ test_animes = test_df['anime_id'].values
 test_ratings = test_df['rating'].values
 
 
-# In[8]:
+# In[ ]:
 
 
 # --- NCF Predictions ---
@@ -478,7 +478,7 @@ test_anime_indices = np.array([anime_id_to_index[anime] for anime in test_animes
 ncf_predictions = model.predict([test_user_indices, test_anime_indices], batch_size=256, verbose=1).flatten()
 
 
-# In[9]:
+# In[ ]:
 
 
 # --- SVD Predictions (if applicable) ---
@@ -517,7 +517,7 @@ print(f"SVD RMSE: {rmse_svd:.2f}")
 print(f"SVD MAE: {mae_svd:.2f}")
 
 
-# In[10]:
+# In[ ]:
 
 
 import numpy as np
@@ -541,7 +541,7 @@ rmse = np.sqrt(np.mean(errors**2))
 mae = np.mean(np.abs(errors))
 
 
-# In[11]:
+# In[ ]:
 
 
 # NCF
@@ -549,14 +549,14 @@ rmse_ncf = np.sqrt(mean_squared_error(test_ratings, ncf_predictions))
 mae_ncf = mean_absolute_error(test_ratings, ncf_predictions)
 
 
-# In[12]:
+# In[ ]:
 
 
 # Print results
 print(f"NCF - RMSE: {rmse_ncf:.2f} MAE: {mae_ncf:.2f}")
 
 
-# In[13]:
+# In[ ]:
 
 
 print(f"Collaborative filtering - RMSE: {rmse:.2f},MAE: {mae:.2f}")
