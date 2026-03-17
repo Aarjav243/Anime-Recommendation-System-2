@@ -72,8 +72,21 @@ def get_recommendations(user_id, top_n=10):
 #testing with a sample user id 
 user_id = 52969
 if user_id not in predicted_ratings_df.index:
-    print(f"User ID {user_id} not found. Choosing a valid random user ID instead.")
-    user_id = np.random.choice(predicted_ratings_df.index)
+    print(f"\nUser ID {user_id} not found in the dataset.")
+    sample_valid_users = list(np.random.choice(predicted_ratings_df.index, size=10, replace=False))
+    print(f"Here are 10 valid User IDs you can choose from: {sample_valid_users}")
+    
+    while True:
+        try:
+            new_id = int(input("Please enter one of the valid User IDs from the list: "))
+            if new_id in predicted_ratings_df.index:
+                user_id = new_id
+                print(f"Proceeding with User ID {user_id}...\n")
+                break
+            else:
+                print("Invalid choice. Please select an ID from the provided list.")
+        except ValueError:
+            print("Please enter a valid integer ID.")
 
 recommendations = get_recommendations(user_id)
 print(f"\nTop 10 recommendations for user {user_id}:")
@@ -175,8 +188,21 @@ def get_recommendations(user_id, top_n=10):
 #testing with a sample user id 
 user_id = 52969
 if user_id not in user_id_to_index:
-    print(f"User ID {user_id} not found. Choosing a valid random user ID instead.")
-    user_id = np.random.choice(unique_users)
+    print(f"\nUser ID {user_id} not found in the dataset.")
+    sample_valid_users = list(np.random.choice(unique_users, size=10, replace=False))
+    print(f"Here are 10 valid User IDs you can choose from: {sample_valid_users}")
+    
+    while True:
+        try:
+            new_id = int(input("Please enter one of the valid User IDs from the list: "))
+            if new_id in user_id_to_index:
+                user_id = new_id
+                print(f"Proceeding with User ID {user_id}...\n")
+                break
+            else:
+                print("Invalid choice. Please select an ID from the provided list.")
+        except ValueError:
+            print("Please enter a valid integer ID.")
 
 recommendations = get_recommendations(user_id)
 print(f"Top 10 recommendations for user {user_id}:")
@@ -295,8 +321,21 @@ def get_recommendations(user_id, top_n=10):
 # Test with a sample user
 user_id = 52969
 if user_id not in user_id_to_index:
-    print(f"User ID {user_id} not found. Choosing a valid random user ID instead.")
-    user_id = np.random.choice(unique_users)
+    print(f"\nUser ID {user_id} not found in the dataset.")
+    sample_valid_users = list(np.random.choice(unique_users, size=10, replace=False))
+    print(f"Here are 10 valid User IDs you can choose from: {sample_valid_users}")
+    
+    while True:
+        try:
+            new_id = int(input("Please enter one of the valid User IDs from the list: "))
+            if new_id in user_id_to_index:
+                user_id = new_id
+                print(f"Proceeding with User ID {user_id}...\n")
+                break
+            else:
+                print("Invalid choice. Please select an ID from the provided list.")
+        except ValueError:
+            print("Please enter a valid integer ID.")
 
 recommendations = get_recommendations(user_id)
 print(f"\nTop 10 recommendations for user {user_id}:")
